@@ -2,8 +2,10 @@ import java.util.Scanner;
 public class PeminjamanBukuMahasiswa {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        // inisialisasi scanner untuk membaca input pilihan menu
 
         // Data Mahasiswa
+        // array mahasiswa menyimpan objek Mahasiswa dengan NIM, nama, dan prodi
         Mahasiswa[] mhs = {
             new Mahasiswa("22001", "Andi", "Teknik Informatika"),
             new Mahasiswa("22002", "Budi", "Teknik Informatika"),
@@ -53,15 +55,17 @@ public class PeminjamanBukuMahasiswa {
 
                 case 3:
                     System.out.println("\nData Peminjaman:");
+                    // tampilkan semua data peminjaman tanpa perubahan urutan
                     for (Peminjaman p : pinjam) p.tampil();
                     break;
 
                 case 4:
-                    // Hitung denda terlebih dahulu
+                    // 1) Hitung denda untuk semua peminjaman terlebih dahulu
                     for (Peminjaman p : pinjam) {
                         p.hitungDenda();
                     }
-                    // Insertion Sort (descending denda)
+                    // 2) Urutkan array peminjaman berdasarkan nilai denda terbesar ke terkecil
+                    //    menggunakan algoritma insertion sort
                     for (int i = 1; i < pinjam.length; i++) {
                         Peminjaman temp = pinjam[i];
                         int j = i - 1;
@@ -81,7 +85,8 @@ public class PeminjamanBukuMahasiswa {
                     System.out.print("Masukkan NIM: ");
                     String cari = sc.nextLine();
 
-                    // Urutkan dulu berdasarkan NIM (ascending)
+                    // 1) Urutkan data peminjaman berdasarkan NIM mahasiswa secara ascending
+                    //    agar binary search dapat digunakan pada array yang terurut
                     for (int i = 0; i < pinjam.length - 1; i++) {
                         for (int j = i + 1; j < pinjam.length; j++) {
                             if (pinjam[i].mhs.nim.compareTo(pinjam[j].mhs.nim) > 0) {
@@ -92,7 +97,7 @@ public class PeminjamanBukuMahasiswa {
                         }
                     }
 
-                    // Binary Search
+                    // 2) Cari NIM menggunakan binary search
                     int left = 0, right = pinjam.length - 1;
                     boolean ditemukan = false;
 
