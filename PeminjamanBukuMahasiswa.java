@@ -37,6 +37,7 @@ public class PeminjamanBukuMahasiswa {
             System.out.println("3. Tampilkan Peminjaman");
             System.out.println("4. Urutkan berdasarkan Denda");
             System.out.println("5. Cari berdasarkan NIM");
+            System.out.println("6. Cari Buku berdasarkan Kode Buku");
             System.out.println("0. Keluar");
             System.out.print("Pilih: ");
             pilih = sc.nextInt();
@@ -118,6 +119,25 @@ public class PeminjamanBukuMahasiswa {
 
                     if (!ditemukan) {
                         System.out.println("Data tidak ditemukan!");
+                    }
+                    break;
+                    //mencari buku sesuai kode buku
+                case 6:
+                    System.out.print("Masukkan Kode Buku: ");
+                    String kodeCari = sc.nextLine();
+                    boolean bukuDitemukan = false;
+
+                    for (Buku b : buku) {
+                        if (b.kodeBuku.equalsIgnoreCase(kodeCari)) {
+                            System.out.println("Buku ditemukan:");
+                            b.tampil();
+                            bukuDitemukan = true;
+                            break;
+                        }
+                    }
+
+                    if (!bukuDitemukan) {
+                        System.out.println("Buku tidak ditemukan!");
                     }
                     break;
 
