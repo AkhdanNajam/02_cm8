@@ -56,7 +56,10 @@ public class PeminjamanBukuMahasiswa {
 
                 case 3:
                     System.out.println("\nData Peminjaman:");
-                    // tampilkan semua data peminjaman tanpa perubahan urutan
+                    // hitung denda terlebih dahulu agar keterlambatan dan denda 
+                    for (Peminjaman p : pinjam) {
+                        p.hitungDenda();
+                    }
                     for (Peminjaman p : pinjam) p.tampil();
                     break;
 
